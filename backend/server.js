@@ -4,12 +4,15 @@ const app = express();
 const port = 8002;
 var server = require("http").Server(app);
 const io = require("socket.io")(server);
+const bodyParser = require("body-parser");
 
 const cors = require("cors");
 const mongoose = require('mongoose');
 const {Schema} = mongoose;
 
 app.use(cors());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 mongoose.Promise = global.Promise;
 mongoose.connect(process.env.MONGODB_URI || `mongodb://localhost:27017/DBchat`);
