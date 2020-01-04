@@ -6,6 +6,7 @@
     "axios": "^0.18.0",
     "react": "^16.6.3",
     "react-app-env": "^1.2.3",
+    "react-avatar": "^3.9.0",
     "react-bootstrap": "^0.32.4",
     "react-chat-elements": "^10.1.1",
     "react-dom": "^16.6.3",

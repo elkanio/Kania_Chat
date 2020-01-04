@@ -6,10 +6,10 @@ import FormGroup from "react-bootstrap/lib/FormGroup";
 import Col from "react-bootstrap/lib/Col";
 import Jumbotron from "react-bootstrap/lib/Jumbotron";
 import Glyphicon from "react-bootstrap/lib/Glyphicon";
+import Avatar from 'react-avatar';
 import {
   MessageList,
   Navbar as NavbarComponent,
-  Avatar
 } from "react-chat-elements";
 
 /**
@@ -66,14 +66,7 @@ export default class ChatBox extends Component {
                       />
                     </p>
                   </Col>
-                  <Avatar
-                    src={require(`../static/images/avatar/${
-                      this.props.targetUser.id
-                    }.jpg`)}
-                    alt={"logo"}
-                    size="large"
-                    type="circle flexible"
-                  />
+                  <Avatar size="50" round={true} color={Avatar.getRandomColor('sitebase', ['red', 'green', 'blue'])} name={this.props.targetUser.name} />
                   <p className="navBarText">{this.props.targetUser.name}</p>
                 </div>
               }

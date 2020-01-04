@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { ChatList } from "react-chat-elements";
 import {FormControl, FormGroup, Button, InputGroup} from 'react-bootstrap';
 import { newUser } from "./../requests";
+import { fetchUsers } from "./../requests";
+import Avatar from 'react-avatar';
 /**
  *
  * Renders user list
@@ -26,18 +28,19 @@ export default class UserList extends Component {
     }
 
     newUserClick = (e) => {
-        const min = 8;
-        const max = 100;
-        const rand = Math.floor(Math.random()*(max-min+1)+min)
-
         let value = e.target.value;
         let newUserValue = null;
+        let id = null;
         if (value) {
             newUserValue = value;
         }
         this.setState({newUserValue: e.target.value});
-        
-        newUser(rand,newUserValue);
+        fetchUsers().then(function(response) {
+            let len = response.length;
+            id = response[len-1]['id'];
+            console.log ("id = "+response[len-1]['id']+", name= "+response[len-1]['name']);
+            newUser((id+1),newUserValue);
+        });   
     }
 
     onNewUserClicked() {
@@ -113,12 +116,14 @@ export default class UserList extends Component {
                                                                                     lastMessage.text;
                                                         }
                                                         return {
+                                                                                    avatar: <Avatar size="50" round={true} 
+                                                                                                color={Avatar.getRandomColor('sitebase', ['red', 'green', 'blue'])} name={f.name} />,
                                                                                     alt: f.name,
                                                                                     title: f.name,
                                                                                     subtitle: subtitle,
                                                                                     date: date,
                                                                                     unread: f.unread,
-                                                                            user: f
+                                                                                    user: f
                                                         };
                                                         })}
                                                 
@@ -127,7 +132,11 @@ export default class UserList extends Component {
                                                                                     ? this.props.onChatClicked
                                                                                     : this.props.onUserClicked
                                                         }
+                                                    
+                        
+                                                              
                                                         />
+                                                        
                                                                 ) : (
                                                                                     <div className="text-center no-users">Žádní přihlášení uživatelé.</div>
                                                                 )}

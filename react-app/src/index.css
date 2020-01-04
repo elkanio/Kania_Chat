@@ -2,7 +2,14 @@
   margin-left: 10px !important;
   font-size: 17px;
   margin-top: 13px;
-  color:blanchedalmond;
+  color:black;
+}
+
+.textMess{
+    
+    color: white;
+    font-size: 25px;
+    
 }
 
 .signed-in-user{

@@ -7,7 +7,7 @@ export default class NavBar extends Component {
     return (
       <Navbar type="dark"
     center={
-        <div class="navBarText">MESSENGER</div>
+        <div class="textMess">MESSENGER</div>
     }
     right={
         <span className="signed-in-user">{(this.props.signedInUser || {}).name}</span>
