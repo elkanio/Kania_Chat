@@ -3,7 +3,8 @@ import { ChatList } from "react-chat-elements";
 import {FormControl, FormGroup, Button, InputGroup} from 'react-bootstrap';
 import { newUser } from "./../requests";
 import { fetchUsers } from "./../requests";
-import Avatar from 'react-avatar';
+import {Avatar as Neco} from 'react-avatar';
+import Zk from "./zk";
 /**
  *
  * Renders user list
@@ -27,6 +28,16 @@ export default class UserList extends Component {
         this.setState({searchQuery});
     }
 
+    rerender() {
+
+        fetchUsers().then(function (response) {
+            this.setState({
+                userData: response.data
+            });
+        });
+
+    }
+
     newUserClick = (e) => {
         let value = e.target.value;
         let newUserValue = null;
@@ -35,12 +46,16 @@ export default class UserList extends Component {
             newUserValue = value;
         }
         this.setState({newUserValue: e.target.value});
-        fetchUsers().then(function(response) {
+        fetchUsers().then(function (response) {
             let len = response.length;
-            id = response[len-1]['id'];
-            console.log ("id = "+response[len-1]['id']+", name= "+response[len-1]['name']);
-            newUser((id+1),newUserValue);
-        });   
+            id = response[len - 1]['id'];
+            console.log("id = " + response[len - 1]['id'] + ", name= " + response[len - 1]['name']);
+            newUser((id + 1), newUserValue);
+
+            //rerender()
+
+            window.location.reload();
+        });
     }
 
     onNewUserClicked() {
@@ -49,8 +64,8 @@ export default class UserList extends Component {
         }
         this.props.onNewUserClicked(this.state.newUserValue);
         console.log(this.state.newUserValue);
-            this.setState({newUserValue: ""});
-        
+        this.setState({newUserValue: ""});
+
     }
     /**
      *
@@ -84,21 +99,22 @@ export default class UserList extends Component {
                                             onKeyPress={event => {
                                                     if (event.key === "Enter") {
                                                         this.newUserClick(event);
-                                                                                                  }
+                                                                                                                                                          }
                                             }}
                                             />
                                         <InputGroup.Button>
                                             <Button
                                                 className="newUserButton"
-                                                onClick={this.onNewUserClicked.bind(this)}
+                                                onClick={
+                                                        this.onNewUserClicked.bind(this)}
                                                 >
                                                 Přidat uživatele
                                             </Button>
                                         </InputGroup.Button>
                                     </InputGroup>
-                                            ) : ""}
+                                                    ) : ""}
                     </FormGroup>
-                                                        {users.length ? (
+                    {users.length ? (
                                                     <ChatList
                                                         className={!this.props.showSignInList ? "chat-list" : "user-list"}
                                                         dataSource={users.map((f, i) => {
@@ -116,14 +132,12 @@ export default class UserList extends Component {
                                                                                     lastMessage.text;
                                                         }
                                                         return {
-                                                                                    avatar: <Avatar size="50" round={true} 
-                                                                                                color={Avatar.getRandomColor('sitebase', ['red', 'green', 'blue'])} name={f.name} />,
-                                                                                    alt: f.name,
-                                                                                    title: f.name,
-                                                                                    subtitle: subtitle,
-                                                                                    date: date,
-                                                                                    unread: f.unread,
-                                                                                    user: f
+                                                                                    avatar: <Zk />,
+                                                                                        title: f.name,
+                                                                                        subtitle: subtitle,
+                                                                                        date: date,
+                                                                                        unread: f.unread,
+                                                                                        user: f
                                                         };
                                                         })}
                                                 
@@ -132,14 +146,14 @@ export default class UserList extends Component {
                                                                                     ? this.props.onChatClicked
                                                                                     : this.props.onUserClicked
                                                         }
-                                                    
-                        
-                                                              
+                                                
+                                                
+                                                
                                                         />
-                                                        
-                                                                ) : (
-                                                                                    <div className="text-center no-users">Žádní přihlášení uživatelé.</div>
-                                                                )}
+
+                                                                        ) : (
+                                                                        <div className="text-center no-users">Žádní přihlášení uživatelé.</div>
+                                                                        )}
                 </div>
                                                     );
                         }

@@ -21,10 +21,18 @@
   background-color: white;
 }
 .message-list {
-  height: 68vh;
+  height: 65vh;
   border-left: 2px solid #f4f4f4;
   border-right: 2px solid #f4f4f4;
+  
 }
+
+.mezera{
+
+    margin-top: 50px;
+    
+}
+
 .user-list {
   height: 300px;
   overflow-y: scroll;
@@ -42,13 +50,14 @@
   fill: aliceblue !important;
 }
 .rce-mbox-left-notch {
-  fill: antiquewhite !important;
+  fill: white !important;
 }
 .rce-mbox-right {
-  background-color: aliceblue !important;
+  background-color: #0066ff !important;
+  color: white;
 }
 body {
-  background-color: #e6e6e6;
+    background-color: #cccccc;
 }
 .form-group{
   border: 2px solid #f4f4f4;

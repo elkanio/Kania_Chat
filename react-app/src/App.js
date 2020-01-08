@@ -260,6 +260,7 @@ class App extends Component {
     return (
       <div>
         <NavBar signedInUser={this.state.user} />
+        <div class="mezera"></div>
         <Grid>
           <Row className="show-grid">
             <Col {...chatListProps} md={4}>

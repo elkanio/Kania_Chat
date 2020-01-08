@@ -10,7 +10,7 @@ export default class NavBar extends Component {
         <div class="textMess">MESSENGER</div>
     }
     right={
-        <span className="signed-in-user">{(this.props.signedInUser || {}).name}</span>
+        <span className="signed-in-user">Ahoj, {(this.props.signedInUser || {}).name}</span>
     }/>
     );
   }

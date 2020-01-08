@@ -4,7 +4,6 @@ import InputGroup from "react-bootstrap/lib/InputGroup";
 import Button from "react-bootstrap/lib/Button";
 import FormGroup from "react-bootstrap/lib/FormGroup";
 import Col from "react-bootstrap/lib/Col";
-import Jumbotron from "react-bootstrap/lib/Jumbotron";
 import Glyphicon from "react-bootstrap/lib/Glyphicon";
 import Avatar from 'react-avatar';
 import {
@@ -104,10 +103,6 @@ export default class ChatBox extends Component {
           </div>
         ) : (
           <div>
-            <Jumbotron>
-              <h1>Hello, {(this.props.signedInUser || {}).name}!</h1>
-              <p>Select a friend to start a chat.</p>
-            </Jumbotron>
           </div>
         )}
       </div>
