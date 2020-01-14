@@ -1,3 +1,4 @@
+
 import React, { Component } from "react";
 import NavBar from "./components/NavBar";
 import Grid from "react-bootstrap/lib/Grid";
@@ -22,7 +23,10 @@ import axios from "axios";
 /**
  * Fetches socket server URL from env
  */
-const SOCKET_URI = process.env.REACT_APP_SERVER_URI;
+//const SOCKET_URI = process.env.REACT_APP_SERVER_URI;
+const SOCKET_URI = "http://localhost:8002";
+
+console.log(SOCKET_URI);
 
 /**
  * App Component

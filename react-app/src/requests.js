@@ -6,6 +6,7 @@ axios.defaults.baseURL = API_ROOT;
 
 export const fetchUsers = async () => {
     let res = await axios.get(`/users`);
+
     return res.data || [];
 }
 

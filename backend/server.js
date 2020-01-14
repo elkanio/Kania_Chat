@@ -5,6 +5,7 @@ const port = 8002;
 var server = require("http").Server(app);
 const io = require("socket.io")(server);
 const bodyParser = require("body-parser");
+const path = require('path');
 
 const cors = require("cors");
 const mongoose = require('mongoose');
@@ -14,8 +15,14 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+app.use(express.static(path.join(__dirname, 'build')));
+
+app.get('/fe', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
+
 mongoose.Promise = global.Promise;
-mongoose.connect(process.env.MONGODB_URI || `mongodb://localhost:27017/DBchat`);
+mongoose.connect(process.env.MONGODB_URI || `mongodb+srv://elkanios:robotka@cluster0-wcjwo.mongodb.net/DBchat`);
 
 var clients = {};
 
@@ -83,7 +90,12 @@ app.post("/users", (req, res) => {
     user.save(function(err,user){
         res.json(user);
     });
-})
+}),
+        
+ app.get('/api', function (req, res) {
+    res.set('Content-Type', 'application/json');
+    res.send('{"message":"Hello from the custom server!"}');
+  });
 
 server.listen(port, () =>
   console.log(`APP listening on port ${port}!`)

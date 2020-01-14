@@ -1,0 +1,22 @@
+version: "3"
+services:
+    frontend:
+        container_name: cool-chat
+        build:
+            context: ./react-app
+            dockerfile: Dockerfile
+        image: kania/cool-chat
+        ports:
+            - "3000:3000"
+        volumes:
+            - ./client:/usr/src/app
+    backend:
+        container_name: cool-chat-backend
+        build:
+            context: ./backend
+            dockerfile: Dockerfile
+        image: kania/cool-chat-backend
+        ports:
+            - "8002:8002"
+        volumes:
+            - ./server:/usr/src/app
