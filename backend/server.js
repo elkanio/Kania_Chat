@@ -22,7 +22,7 @@ app.get('/fe', (req, res) => {
 });
 
 mongoose.Promise = global.Promise;
-mongoose.connect(process.env.MONGODB_URI || `mongodb+srv://elkanios:robotka@cluster0-wcjwo.mongodb.net/DBchat`);
+mongoose.connect(process.env.MONGODB_URI || `mongodb+srv://elkanios:robotka@cluster0-wcjwo.mongodb.net/DBchat`,{ useUnifiedTopology: true, useNewUrlParser: true });
 
 var clients = {};
 
