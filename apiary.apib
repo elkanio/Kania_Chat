@@ -1,80 +1,72 @@
 FORMAT: 1A
 HOST: http://polls.apiblueprint.org/
 
-# Lukáš Kania
+# chat-pwa API
 
-Polls is a simple API allowing consumers to view polls and vote in them.
+API blueprint describing chat-pwa project - simple chat.
 
-## Questions Collection [/questions]
+# group USER
+This API group contains all functions associated with users and their connection.
 
-### List All Questions [GET]
+## Login [/user/login]
 
-+ Response 200 (application/json)
-
-        [
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 2048
-                    }, {
-                        "choice": "Python",
-                        "votes": 1024
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 512
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 256
-                    }
-                ]
-            }
-        ]
-
-### Create a New Question [POST]
-
-You may create your own question using this action. It takes a JSON
-object containing a question and a collection of answers in the
-form of choices.
+### Login [POST]
++ Attributes
+    + email: john@appleseed.com (string, required) - e-mail used as login name
+    + password: secretPW (string, required) - password
 
 + Request (application/json)
 
         {
-            "question": "Favourite programming language?",
-            "choices": [
-                "Swift",
-                "Python",
-                "Objective-C",
-                "Ruby"
-            ]
+            "email": "test@test.com",
+            "password": "secret",
         }
 
-+ Response 201 (application/json)
++ Response 200 (text/plain)
 
-    + Headers
+        User sign up was succesfull.
+        
+## Logout [/user/logout]
+User does not send anything. Logout is done based on an active session.
 
-            Location: /questions/2
+### Logout [GET]
 
-    + Body
++ Response 200 (application/json)
+        
++ Response 403 (text/plain)
 
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 0
-                    }, {
-                        "choice": "Python",
-                        "votes": 0
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 0
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 0
-                    }
-                ]
-            }
+        You are already logged out.        
+        
+## Sign up [/users]
+
+### Signup [POST]
++ Attributes
+    + id: id
+    name: Kania
+
++ Request (application/json)
+
+        {
+            "email": "test@test.com",
+            "password": "secret",
+            "passwordConfirm": "secret",
+            "name": "Karel",
+        }
+
++ Response 200 (text/html; charset=utf-8)
+
+        User sign up was succesfull.     
+                 
+        
+## Login status [/users]
+
+### Status [GET]
+
++ Response 200 (application/json)
+
+        {
+            "id": "5",
+            "name": "test@test.com"
+        }        
+
++ Response 200 (application/json)
