@@ -7,39 +7,10 @@ API blueprint describing chat-pwa project - simple chat.
 
 # group USER
 This API group contains all functions associated with users and their connection.
-
-## Login [/user/login]
-
-### Login [POST]
-+ Attributes
-    + email: john@appleseed.com (string, required) - e-mail used as login name
-    + password: secretPW (string, required) - password
-
-+ Request (application/json)
-
-        {
-            "email": "test@test.com",
-            "password": "secret",
-        }
-
-+ Response 200 (text/plain)
-
-        User sign up was succesfull.
         
-## Logout [/user/logout]
-User does not send anything. Logout is done based on an active session.
+## Přihlášení [/users]
 
-### Logout [GET]
-
-+ Response 200 (application/json)
-        
-+ Response 403 (text/plain)
-
-        You are already logged out.        
-        
-## Sign up [/users]
-
-### Signup [POST]
+### Nový Uživatl [POST]
 + Attributes
     + id: id
     name: Kania
@@ -58,9 +29,9 @@ User does not send anything. Logout is done based on an active session.
         User sign up was succesfull.     
                  
         
-## Login status [/users]
+## UserList [/users]
 
-### Status [GET]
+### GetAll [GET]
 
 + Response 200 (application/json)
 
